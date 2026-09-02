@@ -1,6 +1,8 @@
 # Robo GTD — Whitelist Registration Deployment Package
 
-The header now reads **ROBO WHITELIST REGISTRATION IS NOW OPEN!**. Registration submissions can be stored in Supabase in real time through the included browser bridge. The schema has been applied to the connected `therobowtf` Supabase project.
+The header now reads **ROBO WHITELIST REGISTRATION IS NOW OPEN!**. Registration submissions can be stored in Supabase in real time through the included browser bridge. The schema has been applied to the connected `therobowtf` Supabase project. A fourth required task now asks visitors to like and retweet the latest Robo post.
+
+Each browser receives a persistent device ID and a unique referral code. The form shows a shareable referral link and quote-tweet text, requires confirmation that the visitor created the quote tweet, and blocks repeat submissions from the same browser. Browser storage can be cleared or bypassed, so the database's unique device constraint is the authoritative duplicate check.
 
 ## Supabase setup
 
@@ -26,6 +28,12 @@ For a non-Netlify static host, replace the empty values in `supabase-config.js` 
 3. **Supabase Collection**:
    - Added `supabase-schema.sql` for the registration table and realtime publication.
    - Added a browser bridge that sends the existing form payload to Supabase without requiring a rebuild of the bundled app.
+
+4. **Latest X Task**:
+   - Added the latest like-and-retweet task through `patch-bundle.mjs`, which runs automatically during the Netlify build.
+
+5. **Referral and duplicate protection**:
+   - Added unique referral link generation, quote-tweet confirmation, and one-submission-per-device enforcement backed by Supabase.
 
 ---
 
