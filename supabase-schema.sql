@@ -4,6 +4,11 @@ create table if not exists public.whitelist_registrations (
   username text not null check (char_length(username) between 1 and 100),
   wallet_address text not null check (char_length(wallet_address) between 1 and 200),
   tasks_completed text[] not null default '{}',
+  device_id text not null,
+  referral_code text not null,
+  referral_url text not null,
+  referred_by text,
+  quote_tweet_confirmed boolean not null default false,
   created_at timestamptz not null default now()
 );
 
@@ -19,7 +24,17 @@ create policy "Anyone can submit a whitelist registration"
   with check (
     char_length(username) between 1 and 100
     and char_length(wallet_address) between 1 and 200
+    and char_length(device_id) between 8 and 100
+    and char_length(referral_code) between 6 and 100
+    and char_length(referral_url) between 1 and 500
+    and quote_tweet_confirmed is true
   );
+
+create unique index if not exists whitelist_registrations_device_id_key
+  on public.whitelist_registrations (device_id);
+
+create unique index if not exists whitelist_registrations_referral_code_key
+  on public.whitelist_registrations (referral_code);
 
 do $$
 begin
