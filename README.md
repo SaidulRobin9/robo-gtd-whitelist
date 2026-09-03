@@ -1,6 +1,6 @@
 # Robo GTD — Whitelist Registration Deployment Package
 
-The header now reads **ROBO WHITELIST REGISTRATION IS NOW OPEN!**. Registration submissions can be stored in Supabase in real time through the included browser bridge. The schema has been applied to the connected `therobowtf` Supabase project. A fourth required task now asks visitors to like and retweet the latest Robo post.
+The header now reads **ROBO WHITELIST REGISTRATION IS NOW CLOSED.** Thanks for visiting — we’ll be back later with an eligibility checker. (Registration submissions and the social tasks are disabled.) The schema has been applied to the connected `therobowtf` Supabase project. A fourth required task now asks visitors to like and retweet the latest Robo post.
 
 Each browser receives a persistent device ID and a unique referral code. The form shows a shareable referral link and quote-tweet text, requires confirmation that the visitor created the quote tweet, and blocks repeat submissions from the same browser. Browser storage can be cleared or bypassed, so the database's unique device constraint is the authoritative duplicate check.
 
